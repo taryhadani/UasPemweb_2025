@@ -1,0 +1,102 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Dompetku API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/expenses": {
+      "get": {
+        "summary": "Retrieve all expenses",
+        "responses": {
+          "200": {
+            "description": "A list of expenses",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Expense"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new expense",
+        "parameters": [
+          {
+            "name": "expense",
+            "in": "body",
+            "description": "Expense data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Expense"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Expense created"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "summary": "Retrieve all categories",
+        "responses": {
+          "200": {
+            "description": "A list of categories",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Category"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Expense": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Expense ID"
+        },
+        "amount": {
+          "type": "number",
+          "format": "float",
+          "description": "Amount of the expense"
+        },
+        "category_id": {
+          "type": "integer",
+          "description": "Category ID linked to the expense"
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of the expense"
+        },
+        "note": {
+          "type": "string",
+          "description": "Additional notes for the expense"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Category ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Category name"
+        }
+      }
+    }
+  }
+}
